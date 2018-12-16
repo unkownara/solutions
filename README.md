@@ -1,44 +1,53 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## OverView ##
 
-## Available Scripts
+# Social App
+    It contains mainfeed page for showing all the posts. It has some common events like post Like, DisLike, BookMark, Share (Static). When the user clicks a particular post it will redirect to another page and showing the particular post details with the same common events as I mentioned earlier. When the users makes any changes in any post like putting like it will be stored in the DynamoDb table through AWS API Call.
+ 
+# Languages & Technologies used:
+    => Front end
+        -> React Js, (Redux)
+    => Back end
+        -> AWS Service
+            . AWS Lambda Function (Serverless computing platform)
+                Integrating with DynamoDb (Scan, put operation)
+            . AWS Dynamo DB (Storing all the posts data)
+            . AWS S3 (Storing post Images and user profiles)
+            . AWS API Gateway (GET, POST calls)
+            . AWS IAM (for authentication)
+        -> Node.js (Lambda function)
 
-In the project directory, you can run:
+# working flow
+                        
 
-### `npm start`
+    => Initial stage when the page is loading,
+                        
+                         Response
+    Front end           <-------------    AWS Lambda Function <------------ DynamoDB
+    (Web application)   -------------->    (Posts data)                      (Table)
+                        (GET API CALL)
+    
+    => After getting successful response from server, the posts are displayed in the web page,
+    
+    => When the users click any events like post Like, DisLike, BookMark. It will be automatically calling a POST API call and updating into dynamodb through Lambda function.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+                        (POST API CALL)    
+    Front end           ------------->   AWS Lambda Function ------------> DynamoDB
+    (Web application)                     (Posts data)                      (Table)
+         |
+         |
+         | (Parallely updating the changed event in Redux store object)
+         |
+         v
+    Redux store
+     (Object)
 
-### `npm test`
+# Open sources used:
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    => Semantic UI React ("https://react.semantic-ui.com/")
+    => Ant Design ("https://ant.design/docs/react/introduce")
+    => Material Design ("https://material-ui.com/")
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Thank you!!
+    I am developing this application with basic UI design and backend service. I am putting more
+    concentrate in working functionality and reusable component. I am structured the code as much as reusable component. And I think, I covered almost all edge cases.
