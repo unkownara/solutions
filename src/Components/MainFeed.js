@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import "semantic-ui-css/semantic.css";
-import '../Css/MainFeed.css';
-import "antd/dist/antd.css";
 import Cards from './Card';
 import axios from 'axios';
 import { Loader } from './Loader';
 import { storeUserPostsInLocalStore } from '../Redux/Actions/MainFeedAction';
 import history from '../history';
 
+import "semantic-ui-css/semantic.css";
+import '../Css/MainFeed.css';
+import "antd/dist/antd.css";
+
+/*
+    MainFeed component contains all the card details and 
+    making an API call for getting all the posts information from dynamoDB table
+    through Aws API Gateway.
+*/
 
 class MainFeed extends Component {
     
@@ -17,6 +23,9 @@ class MainFeed extends Component {
         loading: true
     }
 
+    /*
+        GET API call for getting post lists from dynamodb table.
+    */
     componentWillMount = () => {
         axios.get("https://0fadggmpo7.execute-api.us-east-2.amazonaws.com/beta/sample-api")
         .then(response => {
@@ -29,6 +38,9 @@ class MainFeed extends Component {
         }).catch(error => console.log("error message ", error))
     }
 
+    /*
+        Page redirection to post details with current post card details.
+    */
     imageOnClick = (index, e) => {
         history.push({
             pathname: '/post_details',
@@ -38,7 +50,7 @@ class MainFeed extends Component {
             }
         });
     }
-
+    
     render() {
         if(this.state.listOfPosts !== undefined && this.state.listOfPosts.length > 0) {
             return (

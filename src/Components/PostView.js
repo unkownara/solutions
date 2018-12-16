@@ -3,6 +3,11 @@ import "semantic-ui-css/semantic.css";
 import "antd/dist/antd.css";
 import "../Css/PostView.css";
 import Cards from './Card';
+
+/*
+    PostView component -> Separate view of each posts.
+        It contains similar options what are exactly shown in the Feed page.
+*/
 export default class PostView extends React.Component {
 
     state = {

@@ -4,6 +4,9 @@ import 'semantic-ui-css/semantic.css';
 import 'antd/dist/antd.css';
 import '../Css/Navbar.css';
 
+/*
+  Simple NavBar header -> Showing application name.
+*/
 const NavBar = () => {
     return (
       <div className="navMainContainer">

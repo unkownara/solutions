@@ -11,6 +11,9 @@ import { updatePostInformation } from './UpdatePostActions';
 import Snackbar from '@material-ui/core/Snackbar';
 const { Meta } = Card;
 
+/*
+    Functional Component for displaying post Image.
+*/
 export const PostImage = (props) => {
     return (
         <img
@@ -21,6 +24,9 @@ export const PostImage = (props) => {
     )
 }
 
+/*
+    Functional component for poster information, e.g. User profile , user name, post description.
+*/
 export const PostInfo = (props) => {
     const description = props.isFeed === true && props.postDescription.length > 255 ? props.postDescription.substring(0,255)+"..." : props.postDescription;
     return (
@@ -34,6 +40,10 @@ export const PostInfo = (props) => {
     )
 }
 
+/*
+    BookMarkOption - Maintaining bookmark posts and snackbar will popup whenever users click
+    bookmark adding and removing.
+*/
 class BookMarkOption extends React.Component {
 
     state = {

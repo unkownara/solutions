@@ -11,6 +11,12 @@ import {connect} from 'react-redux';
 import cookie from 'react-cookies';
 import {updatePostInformation} from './UpdatePostActions';
 
+/*
+    LikeButton performs like opeartion when the users click like button.
+    At the same time it will update the status into dynamoDB through API Post call.
+    So that we can maintain dynamic status of each post status.
+*/
+
 class LikeButton extends React.Component {
 
     state = {
@@ -24,6 +30,11 @@ class LikeButton extends React.Component {
             count: this.props.count
         });
     }
+
+    /*
+        Checking the like and dislike status before performing the like action.
+        Because if the dislike is enabled in that post, we cannot directly put like action.
+    */
 
     LikeOnClick = (e) => {
         let index = cookie.load("index");

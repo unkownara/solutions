@@ -1,5 +1,8 @@
 import axios from 'axios';
 
+/*
+    Post data updation is performed through AWS API gateway. And updating the post information in DynamoDb table.
+*/
 export const updatePostInformation = (postInfo) => {
     axios({
         method: "POST",

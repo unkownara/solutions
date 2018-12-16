@@ -11,6 +11,11 @@ import {connect} from 'react-redux';
 import cookie from 'react-cookies';
 import {updatePostInformation} from './UpdatePostActions';
 
+/*
+    DisLikeButton performs dislike opeartion when the users click dislike button.
+    At the same time it will update the status into dynamoDB through API Post call.
+    So that we can maintain dynamic status of each post status.
+*/
 class DisLikeButton extends React.Component {
 
     state = {
@@ -25,6 +30,11 @@ class DisLikeButton extends React.Component {
         });
     }
 
+    /*
+        Checking the like and dislike status before performing the dislike action.
+        Because if the like is enabled in that post, we cannot directly put dislike action.
+    */
+   
     disLikeOnClick = (e) => {
         let index = cookie.load("index");
         if(this.props.likeStatus === false || this.props.postLists.mainFeedPostLists[index].likeStatus === false) {

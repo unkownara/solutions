@@ -2,15 +2,23 @@ import {
     mainFeedPostListsData
 } from '../Store/StoreConstants';
 
+/*
+    Reducer for updating local changing data into Redux store objects.
+*/
 export const postStatus = (state = mainFeedPostListsData, action) => {
-    // console.log("main list ", mainFeedPostLists, action.payload);
     switch (action.type) {
+        /*
+            User post -> Initial post list assignment. These data are fetching from Dynamodb table.
+        */
         case "USERPOST":
             state = {
                 ...state,
                 mainFeedPostLists: action.payload
             }
         break;
+        /*
+            Like -> updating like status of each post.
+        */
         case "LIKE":
             let currentPostDetails = state.mainFeedPostLists[action.payload.index];
             if(action.payload.status === true) {
@@ -32,6 +40,9 @@ export const postStatus = (state = mainFeedPostListsData, action) => {
             }
         break;
         
+        /*
+            Dislike -> updating disLike status of each post.
+        */
         case "DISLIKE":
             let disLikePost = state.mainFeedPostLists[action.payload.index];
             if(action.payload.status === true) {
@@ -52,7 +63,10 @@ export const postStatus = (state = mainFeedPostListsData, action) => {
                 mainFeedPostLists: tempPostList
             }
         break;
-
+        
+        /*
+            Bookmark -> Maintaining the post book mark status.
+        */
         case "BOOKMARK":
             let bookMarkOpt = state.mainFeedPostLists[action.payload.index];
             if(action.payload.status === true) {
@@ -67,10 +81,9 @@ export const postStatus = (state = mainFeedPostListsData, action) => {
                 mainFeedPostLists: tempList
             }
         break;
-
+            
         default:
         break;
     }
-    console.log("after state updation ", state.mainFeedPostLists);
     return state;
 }

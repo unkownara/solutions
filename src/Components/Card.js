@@ -13,6 +13,16 @@ import { TwitterIcon } from 'react-share';
 import DisLikeButton from './DisLikeStatus';
 import history from '../history';
 
+
+/*
+    Card component ->   Post Image,
+                        Poster profile,
+                        Post description,
+                        Like,
+                        Dislike,
+                        Bookmark,
+                        Share (Only static)
+*/
 class Cards extends Component {
 
     state = {
@@ -28,6 +38,9 @@ class Cards extends Component {
         cookie.save("index", this.props.index, { path: '/'});
     }
 
+    /*
+        Page redirection to post details with current post card details.
+    */
     imageOnClick = (index, e) => {
         if(this.props.isFeed === true) {
             history.push({

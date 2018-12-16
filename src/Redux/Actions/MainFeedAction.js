@@ -1,3 +1,7 @@
+/*
+    Separate Redux actions for performation individual opeartions.
+*/
+
 export const likeStatusAction = (status, index) => {
     return dispatch => {
         dispatch({
